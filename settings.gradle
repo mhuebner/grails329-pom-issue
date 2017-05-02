@@ -1,0 +1,6 @@
+rootProject.name = 'org.mainProject.ROOT'
+
+include (
+    'sub1',
+    'sub2'
+)

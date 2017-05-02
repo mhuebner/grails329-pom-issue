@@ -1,0 +1,36 @@
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+}
+
+allprojects { project ->
+    version = "1.0-SNAPSHOT"
+    group = "org.test"
+
+    apply plugin: "java"
+    apply plugin: "maven-publish"
+}
+
+subprojects { Project subproject ->
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    configure(subproject) {
+        publishing {
+            publications {
+                mavenJava(MavenPublication) {
+                    from components.java
+                }
+            }
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication)
+    }
+}
