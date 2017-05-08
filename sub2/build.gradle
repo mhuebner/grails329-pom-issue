@@ -1,7 +1,8 @@
 buildscript {
     repositories {
+        mavenCentral()
         mavenLocal()
-            maven { url "https://repo.grails.org/grails/core" }
+        maven { url "https://repo.grails.org/grails/core" }
 
     }
     dependencies {
@@ -12,8 +13,15 @@ buildscript {
 apply plugin: "org.grails.grails-plugin"
 
 dependencies {
-    compile "org.codehaus.groovy:groovy:2.4.10"
-    compile "org.mindrot:jbcrypt:0.3m"
+    compile "org.springframework.boot:spring-boot-starter-logging"
+    compile "org.springframework.boot:spring-boot-autoconfigure"
+    compile "org.grails:grails-core"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "org.springframework.boot:spring-boot-starter-tomcat"
+    compile "org.grails:grails-dependencies"
+    compile "org.grails:grails-web-boot"
+    console "org.grails:grails-console"
+    profile "org.grails.profiles:plugin"
 }
 
 
