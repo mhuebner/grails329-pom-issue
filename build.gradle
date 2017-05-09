@@ -1,24 +1,32 @@
 buildscript {
     repositories {
         mavenLocal()
+        maven { url "https://repo.grails.org/grails/core" }
+    }
+    dependencies {
+        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
     }
 }
 
-allprojects { project ->
-    version = "1.0-SNAPSHOT"
-    group = "org.test"
-
-    apply plugin: "java"
-    apply plugin: "maven-publish"
-}
-
-subprojects { Project subproject ->
+allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
     }
+    version = "1.0-SNAPSHOT"
+    group = "org.test"
+}
 
-    configure(subproject) {
+subprojects { sub ->
+    if (sub.name == 'sub2') {
+        apply plugin: "org.grails.grails-plugin"
+    } else {
+        apply plugin: "java"
+    }
+
+    apply plugin: "maven-publish"
+
+    configure(sub) {
         publishing {
             publications {
                 mavenJava(MavenPublication) {
@@ -29,6 +37,7 @@ subprojects { Project subproject ->
     }
 }
 
+apply plugin: "maven-publish"
 publishing {
     publications {
         mavenJava(MavenPublication)
